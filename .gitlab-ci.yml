@@ -7,11 +7,13 @@ services:
 
 before_script:
   - docker login -u "$KD_REGISTRY_USER" -p "$KD_REGISTRY_PASSWORD" $KD_REGISTRY_REGISTRY
+  - docker login -u "$HUB_REGISTRY_USER" -p "$HUB_REGISTRY_PASSWORD"
 
 build-master:
   stage: build
   script:
     - docker build --pull -t "$KD_REGISTRY_REGISTRY/$CI_PROJECT_NAME" .
     - docker push "$KD_REGISTRY_REGISTRY/$CI_PROJECT_NAME"
+    - docker push "keptdream/subsonic"
   only:
     - master
