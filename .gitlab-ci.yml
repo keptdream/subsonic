@@ -12,7 +12,7 @@ before_script:
 build-master:
   stage: build
   script:
-    - docker build --pull -t "$KD_REGISTRY_REGISTRY/$CI_PROJECT_NAME" .
+    - docker build --pull -t "$KD_REGISTRY_REGISTRY/$CI_PROJECT_NAME" -t "keptdream/subsonic" .
     - docker push "$KD_REGISTRY_REGISTRY/$CI_PROJECT_NAME"
     - docker push "keptdream/subsonic"
   only:
